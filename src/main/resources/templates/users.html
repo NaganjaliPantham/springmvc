@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4.5%;
+            background-image: url('https://digitallearning.eletsonline.com/wp-content/uploads/2019/12/Why-School-education-crucial-for-child-development.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 120%;
+            height: 500px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: transparent;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        button {
+            width: 70px;
+            height: 40px;
+            background: #111;
+            border-radius: 5%;
+            border: 1px solid #333;
+            box-shadow: 3px 3px 3px gray;
+        }
+
+        .edits {
+            background-color: rgb(247, 247, 78);
+            border: 1px solid rgb(247, 247, 78);
+            margin-right: 5%;
+        }
+
+        .deletes {
+            background-color: rgb(236, 54, 54);
+            border: 1px solid rgb(236, 54, 54);
+        }
+
+        table {
+            width: 100%;
+            border: 0.5px solid #fff;
+            margin-top: 20px;
+            align-items: center;
+            text-align: center;
+            border-collapse: collapse;
+            transform-style: preserve-3d; /* Enable 3D transformations */
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border: 0.5px solid #fff;
+            align-items: center;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+        }
+
+        table th {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        table tr:hover td {
+            transform: translateZ(20px) scale(1.05); /* Pop-out effect on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+        }
+
+        h1 {
+            margin: 2%;
+            color: #fff;
+        }
+
+        .btn button {
+            margin: 5%;
+            width: 150px;
+            height: 60px;
+            border-radius: 2%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>All Student Details</title>
+</head>
+<body>
+    <div class="container">
+        <h1>All Student Details</h1>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="user:${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td>
+                        <button class="edits">
+                            <a th:href="@{/users/edituser/{id}(id=${user.id})}">Edit</a>
+                        </button>
+                        <button class="deletes">
+                            <a th:href="@{/users/deleteuser/{id}(id=${user.id})}">Delete</a>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="btn">
+            <button>
+                <a href="/users/adduser">Add New Student</a>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

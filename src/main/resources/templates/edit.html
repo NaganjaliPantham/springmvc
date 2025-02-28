@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="all">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('https://digitallearning.eletsonline.com/wp-content/uploads/2019/12/Why-School-education-crucial-for-child-development.jpg');
+    background-position: center left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.forms {
+
+    margin-left: -20px;
+    border: 2px solid black;
+    width: 150%;
+    padding: 10%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin: 15px;
+}
+
+.form-group h3 {
+    margin: 0;
+    width: 100px;
+    color: #333;
+}
+
+.form-group input {
+    height: 30px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    margin: 4% 25%;
+    width: 150px;
+    height: 35px;
+    border-radius: 2%;
+    background: rgb(94, 89, 234);
+    border: 1px solid rgb(87, 96, 231);
+    box-shadow: 3px 3px 3px gray;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: rgb(70, 65, 200);
+}
+
+h1 {
+    margin:2% 20%;
+    color: #333;
+}
+</style>
+<div class="all">
+<div class="forms">
+<h1>Edit Student</h1>
+
+<form th:action="@{/users/updateuser/{id}(id=${user.id})}" method="post" th:object="${user}">
+<div class="form-group">
+<h3>Name :</h3>
+<input type="text" placeholder="enter name" th:field="*{name}" required>
+</div>
+<div class="form-group">
+<h3>Email :</h3>
+<input type="email" placeholder="enter email" th:field="*{email}" required>
+</div>
+<button type="submit">Edit</button>
+</div>
+</div>
+</form>
+</body>
+</html>
